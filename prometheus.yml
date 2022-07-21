@@ -13,7 +13,7 @@ scrape_configs:
         filters:
         - name: tag:aws:autoscaling:groupName
           values:
-          - EC2ContainerService-Prometheus-poc-EcsInstanceAsg-1MQBS8VWA8JQ5
+          - ecs-poc-essential-asg
   - job_name: ecs_CAdvisor
     ec2_sd_configs:
       - port: 9200 # referred to cAdvisor exposed port
@@ -21,26 +21,11 @@ scrape_configs:
         filters:
         - name: tag:aws:autoscaling:groupName
           values:
-          - EC2ContainerService-Prometheus-poc-EcsInstanceAsg-1MQBS8VWA8JQ5
+          - ecs-poc-essential-asg
   - job_name: app
     file_sd_configs:
       - files:
           - /mnt/efs/data/ecs_file_sd.yml
         refresh_interval: 1m
 
-  - job_name: 'ec2_aws_node_exporter'
-    ec2_sd_configs:
-      - port: 9100 # referred to nodeExporter exposed port
-        role_arn: arn:aws:iam::624997202235:role/ecsInstanceRole
-        filters:
-        - name: tag:aws:autoscaling:groupName
-          values:
-          - test-poc
-  - job_name: CAdvisor
-    ec2_sd_configs:
-      - port: 9200 # referred to cAdvisor exposed port
-        role_arn: arn:aws:iam::624997202235:role/ecsInstanceRole
-        filters:
-        - name: tag:aws:autoscaling:groupName
-          values:
-          - test-poc
+  
