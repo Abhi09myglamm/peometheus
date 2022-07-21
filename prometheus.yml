@@ -35,7 +35,7 @@ scrape_configs:
         filters:
         - name: tag:aws:autoscaling:groupName
           values:
-          - EC2ContainerService-Prometheus-poc-EcsInstanceAsg-1MQBS8VWA8JQ5
+          - test-poc
   - job_name: CAdvisor
     ec2_sd_configs:
       - port: 9200 # referred to cAdvisor exposed port
@@ -43,4 +43,4 @@ scrape_configs:
         filters:
         - name: tag:aws:autoscaling:groupName
           values:
-          - EC2ContainerService-Prometheus-poc-EcsInstanceAsg-1MQBS8VWA8JQ5
+          - test-poc
